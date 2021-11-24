@@ -46,27 +46,31 @@ struct IPAccess{
 
         //funcion para comparar dos fechas
         bool operator<(IPAccess& a){
-            if(stoi(mon2num(this->mes))<stoi(mon2num(a.mes))){
+            if(std::stoi(mon2num(this->mes))<std::stoi(mon2num(a.mes))){
                 return true;
-            }else if(stoi(mon2num(this->mes))==stoi(mon2num(a.mes))){
-                if(stoi(mon2num(this->dia))<stoi(mon2num(a.dia))){
+            }else if(std::stoi(mon2num(this->mes))==std::stoi(mon2num(a.mes))){
+                if(std::stoi(this->dia)<std::stoi(a.dia)){
                     return true;
-                }else if(stoi(mon2num(this->dia))==stoi(mon2num(a.dia))){
-                    if(stoi(mon2num(this->hora))<stoi(mon2num(a.hora))){
+                }else if(std::stoi(this->dia)==std::stoi(a.dia)){
+                    if(std::stoi(this->hora)<std::stoi(a.hora)){
                         return true;
-                    }else if(stoi(mon2num(this->hora))==stoi(mon2num(a.hora))){
-                        if(stoi(mon2num(this->minutos))<stoi(mon2num(a.minutos))){
+                    }else if(std::stoi(this->hora)==std::stoi(a.hora)){
+                        if(std::stoi(this->minutos)<std::stoi(a.minutos)){
                             return true;
-                        }else if(stoi(mon2num(this->minutos))==stoi(mon2num(a.minutos))){
-                            if(stoi(mon2num(this->segundos))<stoi(mon2num(a.segundos))){
+                        }else if(std::stoi(this->minutos)==std::stoi(a.minutos)){
+                            if(std::stoi(this->segundos)<std::stoi(a.segundos)){
                                 return true;
                             }else{
                                 return false;
                             }
                         }
+                        return false;
                     }
+                    return false;
                 }
+                return false;
             }
+            return false;
         }
 };
 

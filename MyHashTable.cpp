@@ -76,20 +76,24 @@ void MyHashTable::put(string ip,string mes,string dia,string hora,string minuto,
 
 //Complejidad:O(n)
 void MyHashTable::get(string ip){
-    cout<<"entre"<<endl;
 //ese metodo falta que regrese los accesos ordenados
     int pos = getPos(ip);
     //bubble sort
     list<IPAccess>::iterator end=this->tabla[pos].end();
     end--;
-    cout<<"entre"<<endl;
+    //end--;
     for(list<IPAccess>::iterator it=this->tabla[pos].begin();it!=end;it++){
-    cout<<"entre"<<endl;
+    //cout<<"entre"<<endl;
         for(list<IPAccess>::iterator jt=this->tabla[pos].begin();jt!=end;jt++){
+            //cout<<"entre1"<<endl;
             list<IPAccess>::iterator aux=jt;
             aux++;
+            cout<<jt->mes<<": jt"<<endl;
+            cout<<aux->mes<<": aux"<<endl;
+            cout<<"*************"<<endl;
             IPAccess temp;
-            if((*jt)<(*aux)){
+            if(*jt<*aux){
+            cout<<"entre1"<<endl;
                 temp=(*jt);
                 *jt=*aux;
                 *aux=temp;
