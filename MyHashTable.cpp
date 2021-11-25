@@ -76,23 +76,19 @@ void MyHashTable::put(string ip,string mes,string dia,string hora,string minuto,
 
 //Complejidad:O(n)
 void MyHashTable::get(string ip){
-//ese metodo falta que regrese los accesos ordenados
     int pos = getPos(ip);
-    //bubble sort
+    //bubble sort para ordenar los datos
     list<IPAccess>::iterator end=this->tabla[pos].end();
     end--;
-    //end--;
     for(list<IPAccess>::iterator it=this->tabla[pos].begin();it!=end;it++){
-    //cout<<"entre"<<endl;
         for(list<IPAccess>::iterator jt=this->tabla[pos].begin();jt!=end;jt++){
-            //cout<<"entre1"<<endl;
             list<IPAccess>::iterator aux=jt;
             aux++;
             cout<<jt->mes<<": jt"<<endl;
             cout<<aux->mes<<": aux"<<endl;
             cout<<"*************"<<endl;
             IPAccess temp;
-            if(*jt<*aux){
+            if(*aux<*jt){
             cout<<"entre1"<<endl;
                 temp=(*jt);
                 *jt=*aux;
@@ -100,13 +96,25 @@ void MyHashTable::get(string ip){
             }
         }
     }
+
+    //contamos cuantas veces se repite la key
+    int cont=0;
     for(list<IPAccess>::iterator it=this->tabla[pos].begin();it!=this->tabla[pos].end();it++){
-        cout<<it->ip<<endl;
-        cout<<it->mes<<endl;
-        cout<<it->dia<<endl;
-        cout<<it->hora<<endl;
-        cout<<it->minutos<<endl;
-        cout<<it->segundos<<endl;
+        if(it->ip==ip){cont++;}
+    }
+
+    //imprimimos solo las ip que corresponden a la key
+    for(list<IPAccess>::iterator it=this->tabla[pos].begin();it!=this->tabla[pos].end();it++){
+        if(it->ip==ip){
+            cout<<it->ip<<endl;
+            cout<<it->mes<<endl;
+            cout<<it->dia<<endl;
+            cout<<it->hora<<endl;
+            cout<<it->minutos<<endl;
+            cout<<it->segundos<<endl;
+            cout<<cont<<endl;
+        }
+        
     }
 }
 
