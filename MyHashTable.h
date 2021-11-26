@@ -75,13 +75,13 @@ struct IPAccess{
 };
 
 class MyHashTable{
-    public:
+    private:
         std::list<IPAccess>* tabla;
         int size; //cantidad de valores almacenados en la tabla
         int sizeA; //tamaño del arreglo
         int getPos(std::string);
         void reHash();
-   
+    public:
         MyHashTable();
         ~MyHashTable();
         bool isEmpty();

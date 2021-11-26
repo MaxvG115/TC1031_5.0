@@ -75,7 +75,7 @@ void MyHashTable::put(string ip,string mes,string dia,string hora,string minuto,
     this->size++;
 }
 
-//Complejidad:O(n)
+//Complejidad:O(n^2)
 void MyHashTable::get(string ip){
     int pos = getPos(ip);
     //bubble sort para ordenar los datos
@@ -126,6 +126,7 @@ void MyHashTable::remove(string key){
     //this->tabla[pos].remove_if([key](pair<string,int> data){return data.first==key;});
 }
 
+//Complejidad: O(n)
 void MyHashTable::loadData(){
     string ip;
     string mes;
