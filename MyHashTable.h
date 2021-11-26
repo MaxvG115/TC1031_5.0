@@ -88,6 +88,7 @@ class MyHashTable{
         void put(std::string,std::string,std::string,std::string,std::string,std::string);
         void get(std::string);
         void remove(std::string);
+        void loadData();
 };
 
 #endif

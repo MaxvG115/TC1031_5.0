@@ -2,6 +2,7 @@
 #include <functional>
 #include <cmath>
 #include <utility>
+#include <fstream>
 #include "MyHashTable.h"
 
 using namespace std;
@@ -84,12 +85,8 @@ void MyHashTable::get(string ip){
         for(list<IPAccess>::iterator jt=this->tabla[pos].begin();jt!=end;jt++){
             list<IPAccess>::iterator aux=jt;
             aux++;
-            cout<<jt->mes<<": jt"<<endl;
-            cout<<aux->mes<<": aux"<<endl;
-            cout<<"*************"<<endl;
             IPAccess temp;
             if(*aux<*jt){
-            cout<<"entre1"<<endl;
                 temp=(*jt);
                 *jt=*aux;
                 *aux=temp;
@@ -106,16 +103,13 @@ void MyHashTable::get(string ip){
     //imprimimos solo las ip que corresponden a la key
     for(list<IPAccess>::iterator it=this->tabla[pos].begin();it!=this->tabla[pos].end();it++){
         if(it->ip==ip){
-            cout<<it->ip<<endl;
-            cout<<it->mes<<endl;
-            cout<<it->dia<<endl;
-            cout<<it->hora<<endl;
-            cout<<it->minutos<<endl;
-            cout<<it->segundos<<endl;
-            cout<<cont<<endl;
+            cout<<"IP: "<<it->ip<<endl;
+            cout<<"Fecha: "<<it->dia<<" "<<it->mes<<" "<<it->hora<<":"<<it->minutos<<":"<<it->segundos<<endl;
+            cout<<"-------------------------------------"<<endl;
         }
-        
     }
+    cout<<"Numero de accesos: "<<cont<<endl;
+
 }
 
 //Complejidad:O(n)
@@ -130,4 +124,36 @@ void MyHashTable::remove(string key){
     }
     cout<<"valor no encontrado"<<endl;
     //this->tabla[pos].remove_if([key](pair<string,int> data){return data.first==key;});
+}
+
+void MyHashTable::loadData(){
+    string ip;
+    string mes;
+    string dia;
+    string hora;
+    string minuto;
+    string segundo;
+    string aux;
+    ifstream file;//objeto para leer archivo
+    int cont=0;
+
+    file.open("bitacora.txt");
+
+     if(file.fail()){
+        exit(0);
+    }else{
+        while (!file.eof()){
+            getline(file,mes,' ');
+            getline(file,dia,' ');
+            getline(file,hora,':');
+            getline(file,minuto,':');
+            getline(file,segundo,' ');
+            getline(file,ip,':');
+            getline(file,aux);
+
+            put(ip,mes,dia,hora,minuto,segundo);
+            cont++;
+        }
+    }
+    file.close();
 }
